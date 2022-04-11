@@ -4,10 +4,27 @@
  */
 package com.mycompany.vendingmachine.dao;
 
+import com.mycompany.vendingmachine.dto.Item;
+
 /**
  *
  * @author chica
  */
 public interface VendingMachineDao {
+    
+    double addMoney(double amount);
+    
+    double removeMoney(double amount);
+    
+    Item selection(String item);
+    
+    void loadLibrary();
+    
+    void saveLibrary();
+    
+    void addItem(String name, Item item);
+    
+    void removeItem(String name);
+    
     
 }
