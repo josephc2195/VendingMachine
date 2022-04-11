@@ -5,6 +5,9 @@
 
 package com.mycompany.vendingmachine;
 
+import com.mycompany.vendingmachine.controller.VendingMachineController;
+
+
 /**
  *
  * @author chica
@@ -12,6 +15,7 @@ package com.mycompany.vendingmachine;
 public class App {
 
     public static void main(String[] args) {
-        
+        VendingMachineController controller = new VendingMachineController();
+        controller.run();
     }
 }

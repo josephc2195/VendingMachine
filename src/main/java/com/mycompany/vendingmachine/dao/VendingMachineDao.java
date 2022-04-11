@@ -5,6 +5,7 @@
 package com.mycompany.vendingmachine.dao;
 
 import com.mycompany.vendingmachine.dto.Item;
+import java.util.List;
 
 /**
  *
@@ -17,6 +18,8 @@ public interface VendingMachineDao {
     double removeMoney(double amount);
     
     Item selection(String item);
+    
+    List<Item> listItems();
     
     void loadLibrary();
     

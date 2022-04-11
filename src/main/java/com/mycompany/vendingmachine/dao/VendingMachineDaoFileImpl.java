@@ -5,13 +5,24 @@
 package com.mycompany.vendingmachine.dao;
 
 import com.mycompany.vendingmachine.dto.Item;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 
 /**
  *
  * @author chica
  */
 public class VendingMachineDaoFileImpl implements VendingMachineDao {
+
     private double currentMoney;
     HashMap<String, Item> items = new HashMap<>();
 
@@ -21,13 +32,13 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
         return currentMoney;
     }
 
-    @Override 
+    @Override
     public double removeMoney(double amount) {
         currentMoney -= amount;
         //make sure current money doesn't go under 0
         return currentMoney;
     }
-    
+
     @Override
     public Item selection(String item) {
         return items.get(item);
@@ -45,10 +56,25 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     }
     
     @Override
+    public List<Item> listItems() {
+        //creates set from items "keys"
+        Set<String> itemNames = items.keySet();
+        
+        //list that holds the items
+        List<Item> itemList = new ArrayList();
+        
+        //looping to add items
+        for(String name : itemNames) {
+            itemList.add(items.get(name));//adding item to list by name
+        }
+        return itemList;
+    }
+
+    @Override
     public void saveLibrary() {
-    /*
+
         try {//to create file
-            File myObj = new File("collection.txt");
+            File myObj = new File("Library.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -60,14 +86,12 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
         }
         try {//to write to file
             FileWriter myWriter = new FileWriter("collection.txt");
-            for (Map.Entry<String, DVDObj> entry : dvdCollection.entrySet()) { // iterates through keys in hashmap
-                DVDObj tempdvd = entry.getValue();
-                myWriter.write(tempdvd.getTitle() + "::"
-                        + correctEmptyString(tempdvd.getReleaseDate()) + "::"
-                        + correctEmptyString(tempdvd.getRating()) + "::"
-                        + correctEmptyString(tempdvd.getDirectors()) + "::"
-                        + correctEmptyString(tempdvd.getStudio()) + "::"
-                        + correctEmptyString(tempdvd.getNote()) + "\n");
+            for (Map.Entry<String, Item> entry : items.entrySet()) { // iterates through keys in hashmap
+                Item tempItem = entry.getValue();
+                myWriter.write(tempItem.getName() + "::"
+                        + tempItem.getQuantity() + "::"
+                        + tempItem.getPrice() + "::"
+                        + tempItem.getMoneyInMachine());
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -76,13 +100,41 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
             e.printStackTrace();
         }
     }
-    */
-    }
 
     @Override
     public void loadLibrary() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            File f = new File("Library.txt");
+            if (!f.exists()) {
+                System.out.println("File doesn't exist");
+                throw new Exception();
+            }
+            Scanner sc = new Scanner(new BufferedReader(new FileReader("Library.txt")));//to read from file
+            while (sc.hasNextLine()) {
+                String currentLine = sc.nextLine();
+                String[] storeState = currentLine.split("::", 0);
+               
+                // Revert any empty strings which may have been stored as spaces
+                for (String value : storeState) {
+                    value = revertEmptyValue(value);
+                }
+                
+                Item tempItem = new Item();
+                tempItem.setName(storeState[0]);
+                tempItem.setPrice(Double.parseDouble(storeState[1]));
+                tempItem.setQuantity(Integer.parseInt(storeState[2]));
+              
+                items.put(storeState[0], tempItem);
+            }
+        } catch (Exception e) {
+            System.out.println("You got an error " + e.getMessage());
+        }
     }
-
     
+    public String revertEmptyValue(String checkString) {
+        if (checkString.equals(" ")) {
+            return "";
+        }
+        return checkString;
+    }
 }
