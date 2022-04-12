@@ -27,7 +27,9 @@ public class VendingMachineController {
             io.print("2. Choose an item");
             io.print("3. Add money");
             io.print("4. Return money");
-            io.print("5. Exit");
+            io.print("5. Add item");
+            io.print("6. Exit");
+            
 
             menuSelection = io.readInt("Please select from the above choices.");
 
@@ -46,8 +48,10 @@ public class VendingMachineController {
                     io.print("Return money");
                     break;
                 case 5:
-                    keepGoing = false;
+                    io.print("Add item to vending machine");
                     break;
+                case 6: 
+                    keepGoing = false;
                 default:
                     io.print("UNKNOWN COMMAND");
             }
