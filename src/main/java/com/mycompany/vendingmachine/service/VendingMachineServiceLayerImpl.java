@@ -18,7 +18,7 @@ enum coin
     
 }
 
-public class VendingMachineServiceLayerImpl {
+public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer {
     private VendingMachineDao dao = new VendingMachineDaoFileImpl();
     
     

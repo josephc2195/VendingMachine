@@ -4,10 +4,24 @@
  */
 package com.mycompany.vendingmachine.service;
 
+import com.mycompany.vendingmachine.dto.Item;
+import java.util.List;
+
 /**
  *
  * @author chica
  */
 public interface VendingMachineServiceLayer {
+    public List<Item> listitems();
+    
+    public boolean chooseitem (String name);
+    
+    public double currentbalance();
+    
+    public void addmoney (double money);
+    
+    public boolean returnmoney();
+    
+    public void additem(Item added); 
     
 }
