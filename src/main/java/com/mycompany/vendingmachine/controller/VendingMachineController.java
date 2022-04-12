@@ -56,11 +56,11 @@ public class VendingMachineController {
                     break;
                 case 6: 
                     io.print("Save items to file");
-                    // serviceLayer.saveFile();
+                    saveinvent();
                     break;
                 case 7:
                     io.print("Load items from file");
-                    // ServiceLayer.loadFile();
+                    loadinvent();
                     break;
                 case 8: 
                     io.print("Exit");
