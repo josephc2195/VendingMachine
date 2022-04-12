@@ -71,8 +71,7 @@ public class VendingMachineController {
     }
 
     public void chooseItem(String item) {
-        String i = io.readString("Enter a item to choose: ");
-        Item selection = dao.selection(i);
+        Item selection = dao.selection(view.chooseItem());
         if (dao.checkBalance() == selection.getPrice()) {
             if (selection.getQuantity() >= 1) {
                 selection.setQuantity(selection.getQuantity() - 1);
