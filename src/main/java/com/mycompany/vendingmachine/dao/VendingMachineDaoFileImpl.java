@@ -33,6 +33,11 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     }
 
     @Override
+    public double checkBalance() {
+        return currentMoney;
+    }
+
+    @Override
     public double removeMoney(double amount) {
         currentMoney -= amount;
         //make sure current money doesn't go under 0

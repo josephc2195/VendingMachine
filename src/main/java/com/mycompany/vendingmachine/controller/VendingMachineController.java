@@ -3,9 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.vendingmachine.controller;
-
-import com.mycompany.classroster.ui.UserIO;
-import com.mycompany.classroster.ui.UserIOConsoleImpl;
+import com.mycompany.vendingmachine.ui.*;
 import com.mycompany.vendingmachine.dao.VendingMachineDao;
 import com.mycompany.vendingmachine.dao.VendingMachineDaoFileImpl;
 import com.mycompany.vendingmachine.dto.Item;
@@ -56,11 +54,29 @@ public class VendingMachineController {
         }
         io.print("GOOD BYE");
     }
-    
+
     public void listItems() {
         List<Item> items = dao.listItems();
-        for(Item i : items) {
+        for (Item i : items) {
             io.print(i.getName() + " $" + i.getPrice() + " Quantity: " + i.getQuantity());
+        }
+    }
+
+    public void addMoney(int m) {
+        dao.addMoney(m);
+    }
+
+    public void removeMoney(double m) {
+        dao.removeMoney(m);
+    }
+
+    public void chooseItem(String item) {
+        String i = io.readString("Enter a item to choose: ");
+        Item selection = dao.selection(i);
+        if (dao.checkBalance() == selection.getPrice()) {
+            if (selection.getQuantity() >= 1) {
+                selection.setQuantity(selection.getQuantity() - 1);
+            }
         }
     }
 }

@@ -14,6 +14,8 @@ import java.util.List;
 public interface VendingMachineDao {
     
     double addMoney(double amount);
+
+    double checkBalance();
     
     double removeMoney(double amount);
     
