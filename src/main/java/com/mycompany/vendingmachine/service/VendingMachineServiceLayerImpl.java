@@ -52,4 +52,29 @@ public class VendingMachineServiceLayerImpl {
 
 
    } 
+    
+    
+    public boolean chooseitem (String name)
+            
+    {
+        Item selection = dao.selection(name);
+        
+        if (dao.checkBalance() >= selection.getPrice()) 
+        {
+           
+        } 
+        
+    }
+    
+    
+    
+    
+    
+    
 }
+
+
+
+
+
+

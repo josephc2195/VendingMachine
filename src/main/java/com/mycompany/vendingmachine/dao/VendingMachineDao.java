@@ -31,5 +31,8 @@ public interface VendingMachineDao {
     
     void removeItem(String name);
     
+    void removeinventory(String name);
+    
+    void addinventory(String name);
     
 }
