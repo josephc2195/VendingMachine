@@ -56,6 +56,7 @@ public class VendingMachineController {
                     break;
                 case 6: 
                     keepGoing = false;
+                    break;
                 default:
                     io.print("UNKNOWN COMMAND, PLEASE TRY AGAIN");
             }
