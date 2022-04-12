@@ -113,7 +113,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     public void saveLibrary() {
 
         try {//to create file
-            File myObj = new File("Library.txt");
+            File myObj = new File("collection.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -143,12 +143,12 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     @Override
     public void loadLibrary() {
         try {
-            File f = new File("Library.txt");
+            File f = new File("collection.txt");
             if (!f.exists()) {
                 System.out.println("File doesn't exist");
                 throw new Exception();
             }
-            Scanner sc = new Scanner(new BufferedReader(new FileReader("Library.txt")));//to read from file
+            Scanner sc = new Scanner(new BufferedReader(new FileReader("collection.txt")));//to read from file
             while (sc.hasNextLine()) {
                 String currentLine = sc.nextLine();
                 String[] storeState = currentLine.split("::", 0);
