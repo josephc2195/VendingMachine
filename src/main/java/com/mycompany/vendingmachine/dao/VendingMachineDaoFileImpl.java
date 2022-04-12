@@ -167,6 +167,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
               
                 items.put(storeState[0], tempItem);
             }
+            System.out.println("Succesfully loaded file");    
         } catch (Exception e) {
             System.out.println("You got an error " + e.getMessage());
         }
