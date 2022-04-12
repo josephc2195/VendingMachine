@@ -55,7 +55,12 @@ public class VendingMachineController {
                     addItem();
                     break;
                 case 6: 
-                    keepGoing = false;
+                    io.print("Save items to file");
+                    // serviceLayer.saveFile();
+                    break;
+                case 7:
+                    io.print("Load items from file");
+                    // ServiceLayer.loadFile();
                     break;
                 default:
                     io.print("UNKNOWN COMMAND, PLEASE TRY AGAIN");
