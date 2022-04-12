@@ -48,8 +48,10 @@ public class VendingMachineController {
                     io.print("Return money");
                     break;
                 case 5:
-                    keepGoing = false;
+                    io.print("Add item to vending machine");
                     break;
+                case 6: 
+                    keepGoing = false;
                 default:
                     io.print("UNKNOWN COMMAND");
             }
