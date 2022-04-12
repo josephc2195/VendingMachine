@@ -96,4 +96,12 @@ public class VendingMachineView {
         
         return addedItem;
     }
+    
+    public double moneyEntered() {
+        return io.readDouble("Please enter the amount of money you are depositing: ");
+    }
+    
+    public void change(double amount) { 
+        io.print("Your change is: " + amount);
+    }
 }
