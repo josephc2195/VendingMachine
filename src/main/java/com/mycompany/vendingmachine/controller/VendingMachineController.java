@@ -19,7 +19,7 @@ public class VendingMachineController {
     private VendingMachineDao dao = new VendingMachineDaoFileImpl();
     private VendingMachineView view;
     
-    VendingMachineController(VendingMachineView view) {
+    public VendingMachineController(VendingMachineView view) {
         this.view = view;
     }
 
