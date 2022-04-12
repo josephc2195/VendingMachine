@@ -75,6 +75,13 @@ public class VendingMachineServiceLayerImpl {
     }
     
     
+    public double currentbalance()
+    {
+        return dao.checkBalance();
+        
+    }
+    
+    
     
     
     

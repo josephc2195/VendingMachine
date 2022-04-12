@@ -26,7 +26,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     private double currentMoney;
     HashMap<String, Item> items = new HashMap<>();
     
-    
+    @Override
     public void addinventory(String name)
     {
         Item tempitem = items.get(name);
@@ -37,6 +37,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
         
     }  
     
+    @Override
     public void removeinventory(String name)
     {
         Item tempitem = items.get(name);
