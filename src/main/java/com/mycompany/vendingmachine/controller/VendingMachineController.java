@@ -36,12 +36,17 @@ public class VendingMachineController {
                     break;
                 case 2:
                     io.print("Choose item");
+                    chooseItem(view.chooseItem());
                     break;
                 case 3:
                     io.print("Add money");
+                    // Remove two with new view
+                    addMoney(2);
                     break;
                 case 4:
                     io.print("Return money");
+                    // Replace 3 with new method from view
+                    removeMoney(3);
                     break;
                 case 5:
                     io.print("Add item to vending machine");
@@ -64,6 +69,10 @@ public class VendingMachineController {
 
     public void addMoney(int m) {
         dao.addMoney(m);
+    }
+
+    public void addItem(String n, Item i) {
+        dao.addItem(n, i);
     }
 
     public void removeMoney(double m) {
