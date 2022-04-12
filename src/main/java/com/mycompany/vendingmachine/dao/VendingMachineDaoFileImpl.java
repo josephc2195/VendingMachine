@@ -26,6 +26,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     private double currentMoney;
     HashMap<String, Item> items = new HashMap<>();
     
+    
     @Override
     public void addinventory(String name)
     {

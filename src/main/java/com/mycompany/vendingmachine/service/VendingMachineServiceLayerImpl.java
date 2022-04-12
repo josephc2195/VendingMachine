@@ -81,6 +81,16 @@ public class VendingMachineServiceLayerImpl {
         
     }
     
+    public void addmoney (double money)
+    {
+        dao.addMoney(money);
+    }
+    
+    public void returnmoney()
+    {
+        double tempmoney = dao.checkBalance();
+        dao.removeMoney(tempmoney);
+    }
     
     
     
