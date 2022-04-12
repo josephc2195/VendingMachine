@@ -17,21 +17,17 @@ public class VendingMachineController {
 
     private UserIO io = new UserIOConsoleImpl();
     private VendingMachineDao dao = new VendingMachineDaoFileImpl();
+    private VendingMachineView view;
+    
+    public VendingMachineController(VendingMachineView view) {
+        this.view = view;
+    }
 
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
         while (keepGoing) {
-            io.print("Main Menu");
-            io.print("1. List items");
-            io.print("2. Choose an item");
-            io.print("3. Add money");
-            io.print("4. Return money");
-            io.print("5. Add item");
-            io.print("6. Exit");
-            
-
-            menuSelection = io.readInt("Please select from the above choices.");
+            menuSelection = view.printMenuAndGetSelection();
 
             switch (menuSelection) {
                 case 1:
@@ -40,12 +36,17 @@ public class VendingMachineController {
                     break;
                 case 2:
                     io.print("Choose item");
+                    chooseItem(view.chooseItem());
                     break;
                 case 3:
                     io.print("Add money");
+                    // Remove two with new view
+                    addMoney(2);
                     break;
                 case 4:
                     io.print("Return money");
+                    // Replace 3 with new method from view
+                    removeMoney(3);
                     break;
                 case 5:
                     io.print("Add item to vending machine");
@@ -53,7 +54,7 @@ public class VendingMachineController {
                 case 6: 
                     keepGoing = false;
                 default:
-                    io.print("UNKNOWN COMMAND");
+                    io.print("UNKNOWN COMMAND, PLEASE TRY AGAIN");
             }
         }
         io.print("GOOD BYE");
@@ -70,13 +71,16 @@ public class VendingMachineController {
         dao.addMoney(m);
     }
 
+    public void addItem(String n, Item i) {
+        dao.addItem(n, i);
+    }
+
     public void removeMoney(double m) {
         dao.removeMoney(m);
     }
 
     public void chooseItem(String item) {
-        String i = io.readString("Enter a item to choose: ");
-        Item selection = dao.selection(i);
+        Item selection = dao.selection(view.chooseItem());
         if (dao.checkBalance() == selection.getPrice()) {
             if (selection.getQuantity() >= 1) {
                 selection.setQuantity(selection.getQuantity() - 1);

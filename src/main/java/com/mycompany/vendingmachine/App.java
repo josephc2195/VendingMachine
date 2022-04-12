@@ -6,6 +6,9 @@
 package com.mycompany.vendingmachine;
 
 import com.mycompany.vendingmachine.controller.VendingMachineController;
+import com.mycompany.vendingmachine.ui.UserIO;
+import com.mycompany.vendingmachine.ui.UserIOConsoleImpl;
+import com.mycompany.vendingmachine.ui.VendingMachineView;
 
 
 /**
@@ -15,7 +18,9 @@ import com.mycompany.vendingmachine.controller.VendingMachineController;
 public class App {
 
     public static void main(String[] args) {
-        VendingMachineController controller = new VendingMachineController();
+        UserIO io = new UserIOConsoleImpl();
+        VendingMachineView view = new VendingMachineView(io);
+        VendingMachineController controller = new VendingMachineController(view);
         controller.run();
     }
 }
