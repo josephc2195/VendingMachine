@@ -30,6 +30,7 @@ public class VendingMachineController {
             io.print("3. Add money");
             io.print("4. Return money");
             io.print("5. Exit");
+            
 
             menuSelection = io.readInt("Please select from the above choices.");
 
