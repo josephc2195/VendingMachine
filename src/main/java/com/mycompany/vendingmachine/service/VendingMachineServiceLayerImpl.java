@@ -86,10 +86,19 @@ public class VendingMachineServiceLayerImpl {
         dao.addMoney(money);
     }
     
-    public void returnmoney()
+    public boolean returnmoney()
     {
+        if (dao.checkBalance()==0)
+        {
+            return false;
+        }
+        
+        else
+        {
         double tempmoney = dao.checkBalance();
         dao.removeMoney(tempmoney);
+        return true;
+        }
     }
     
     
