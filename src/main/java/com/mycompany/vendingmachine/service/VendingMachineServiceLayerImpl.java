@@ -61,8 +61,16 @@ public class VendingMachineServiceLayerImpl {
         
         if (dao.checkBalance() >= selection.getPrice()) 
         {
+           dao.removeMoney(selection.getPrice());
+           dao.removeinventory(name);
            
+           return true;
         } 
+        
+        else
+        {
+            return false;
+        }    
         
     }
     

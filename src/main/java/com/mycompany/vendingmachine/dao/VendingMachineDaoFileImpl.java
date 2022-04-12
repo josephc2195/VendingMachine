@@ -49,9 +49,6 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     
     
     
-    
-    
-
     @Override
     public double addMoney(double amount) {
         currentMoney += amount;
