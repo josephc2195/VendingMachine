@@ -25,6 +25,15 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     private double currentMoney;
     HashMap<String, Item> items = new HashMap<>();
+    private String fileName = "Library.txt";
+    
+    public VendingMachineDaoFileImpl() {
+        
+    }
+    
+    public VendingMachineDaoFileImpl(String fileName) {
+        this.fileName = fileName;
+    }
     
     
     @Override
