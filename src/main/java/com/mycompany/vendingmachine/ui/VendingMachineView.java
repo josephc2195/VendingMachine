@@ -4,7 +4,6 @@
  */
 package com.mycompany.vendingmachine.ui;
 
-import com.mycompany.classroster.ui.UserIO;
 import com.mycompany.vendingmachine.dto.Item;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class VendingMachineView {
         io.print("5. Add item");
         io.print("6. Exit");
         
-        return io.readInt("Please select from the above choices.", 1, 6);
+        return io.readInt("Please select from the above choices.");
     } 
     
     /**

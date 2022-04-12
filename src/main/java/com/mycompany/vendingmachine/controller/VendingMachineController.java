@@ -17,21 +17,17 @@ public class VendingMachineController {
 
     private UserIO io = new UserIOConsoleImpl();
     private VendingMachineDao dao = new VendingMachineDaoFileImpl();
+    private VendingMachineView view;
+    
+    VendingMachineController(VendingMachineView view) {
+        this.view = view;
+    }
 
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
         while (keepGoing) {
-            io.print("Main Menu");
-            io.print("1. List items");
-            io.print("2. Choose an item");
-            io.print("3. Add money");
-            io.print("4. Return money");
-            io.print("5. Add item");
-            io.print("6. Exit");
-            
-
-            menuSelection = io.readInt("Please select from the above choices.");
+            menuSelection = view.printMenuAndGetSelection();
 
             switch (menuSelection) {
                 case 1:
@@ -53,7 +49,7 @@ public class VendingMachineController {
                 case 6: 
                     keepGoing = false;
                 default:
-                    io.print("UNKNOWN COMMAND");
+                    io.print("UNKNOWN COMMAND, PLEASE TRY AGAIN");
             }
         }
         io.print("GOOD BYE");
