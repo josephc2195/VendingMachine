@@ -83,7 +83,7 @@ public class VendingMachineController {
         if(serviceLayer.returnmoney()) {
             view.change(current);
         } else {
-            view.toLowBalance();
+            view.tooLowBalance();
         }
     }
 
