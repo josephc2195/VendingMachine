@@ -108,8 +108,18 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
        dao.addItem(name, added);
    }
     
+   public void loadlist()
+   {   
+       dao.loadLibrary();
+   }
     
-    
+   
+   
+   public void savelist()
+   {
+       dao.saveLibrary();
+   }
+   
     
 }
 
