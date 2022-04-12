@@ -99,6 +99,10 @@ public class VendingMachineView {
     }
     
     public void change(double amount) { 
-        io.print("Your change is: " + amount);
+        io.print("You are getting back: " + amount);
+    }
+    
+    public void tooLowBalance() {
+        io.print("There is nothing to return");
     }
 }
