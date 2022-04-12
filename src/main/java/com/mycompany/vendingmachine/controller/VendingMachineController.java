@@ -7,6 +7,8 @@ import com.mycompany.vendingmachine.ui.*;
 import com.mycompany.vendingmachine.dao.VendingMachineDao;
 import com.mycompany.vendingmachine.dao.VendingMachineDaoFileImpl;
 import com.mycompany.vendingmachine.dto.Item;
+import com.mycompany.vendingmachine.service.VendingMachineServiceLayerImpl;
+
 import java.util.List;
 
 /**
@@ -16,6 +18,8 @@ import java.util.List;
 public class VendingMachineController {
 
     private UserIO io = new UserIOConsoleImpl();
+    // Replace with implementation
+    private VendingMachineServiceLayerImpl serviceLayer = new VendingMachineServiceLayerImpl();
     private VendingMachineDao dao = new VendingMachineDaoFileImpl();
     private VendingMachineView view;
     
@@ -36,20 +40,19 @@ public class VendingMachineController {
                     break;
                 case 2:
                     io.print("Choose item");
-                    chooseItem(view.chooseItem());
+                    chooseItem();
                     break;
                 case 3:
                     io.print("Add money");
-                    // Remove two with new view
-                    addMoney(2);
+                    addMoney();
                     break;
                 case 4:
                     io.print("Return money");
-                    // Replace 3 with new method from view
-                    removeMoney(3);
+                    returnMoney();
                     break;
                 case 5:
                     io.print("Add item to vending machine");
+                    addItem();
                     break;
                 case 6: 
                     keepGoing = false;
@@ -61,30 +64,35 @@ public class VendingMachineController {
     }
 
     public void listItems() {
-        List<Item> items = dao.listItems();
-        for (Item i : items) {
-            io.print(i.getName() + " $" + i.getPrice() + " Quantity: " + i.getQuantity());
+        List<Item> items = serviceLayer.listitems();
+        view.displayItemList(items);
+    }
+
+    public void addMoney() {
+        double m = view.moneyEntered();
+        serviceLayer.addmoney(m);
+    }
+
+    public void addItem() {
+        Item i = view.addNewItem();
+        serviceLayer.additem(i);
+    }
+
+    public void returnMoney() {
+        double current = serviceLayer.currentbalance();
+        if(serviceLayer.returnmoney()) {
+            view.change(current);
+        } else {
+            view.toLowBalance();
         }
     }
 
-    public void addMoney(int m) {
-        dao.addMoney(m);
-    }
-
-    public void addItem(String n, Item i) {
-        dao.addItem(n, i);
-    }
-
-    public void removeMoney(double m) {
-        dao.removeMoney(m);
-    }
-
-    public void chooseItem(String item) {
-        Item selection = dao.selection(view.chooseItem());
-        if (dao.checkBalance() == selection.getPrice()) {
-            if (selection.getQuantity() >= 1) {
-                selection.setQuantity(selection.getQuantity() - 1);
-            }
+    public void chooseItem() {
+        String item = view.chooseItem();
+        if(serviceLayer.chooseitem(item)) {
+            System.out.println("Enjoy your item!");
+        } else {
+            System.out.println("Not enough money!");
         }
     }
 }
