@@ -21,6 +21,7 @@ enum coin
 public class VendingMachineServiceLayerImpl {
     private VendingMachineDao dao = new VendingMachineDaoFileImpl();
     
+    
     public List<Item> listitems()
     {
     
@@ -101,6 +102,11 @@ public class VendingMachineServiceLayerImpl {
         }
     }
     
+   public void additem(Item added) 
+   {
+       String name = added.getName();
+       dao.addItem(name, added);
+   }
     
     
     
