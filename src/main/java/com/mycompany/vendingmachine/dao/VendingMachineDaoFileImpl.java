@@ -128,10 +128,9 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
             for (Map.Entry<String, Item> entry : items.entrySet()) { // iterates through keys in hashmap
                 Item tempItem = entry.getValue();
                 myWriter.write(tempItem.getName() + "::"
-                        + tempItem.getQuantity() + "::"
                         + tempItem.getPrice() + "::"
-                        + tempItem.getMoneyInMachine());
-            }
+                        + tempItem.getQuantity());
+            }           
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
@@ -148,6 +147,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
                 System.out.println("File doesn't exist");
                 throw new Exception();
             }
+            
             Scanner sc = new Scanner(new BufferedReader(new FileReader("collection.txt")));//to read from file
             while (sc.hasNextLine()) {
                 String currentLine = sc.nextLine();
@@ -155,13 +155,15 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
                
                 // Revert any empty strings which may have been stored as spaces
                 for (String value : storeState) {
-                    value = revertEmptyValue(value);
+                   value = revertEmptyValue(value);
                 }
                 
-                Item tempItem = new Item();
+                Item tempItem = new Item();//load into hash map
                 tempItem.setName(storeState[0]);
-                tempItem.setPrice(Double.parseDouble(storeState[1]));
-                tempItem.setQuantity(Integer.parseInt(storeState[2]));
+                double tempdouble = Double.parseDouble(storeState[1]);
+                tempItem.setPrice(tempdouble);
+                int tempint = Integer.parseInt(storeState[2]);
+                tempItem.setQuantity(tempint);
               
                 items.put(storeState[0], tempItem);
             }

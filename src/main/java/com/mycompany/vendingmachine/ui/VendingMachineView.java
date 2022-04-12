@@ -29,6 +29,7 @@ public class VendingMachineView {
         io.print("5. Add item");
         io.print("6. Save inventory");
         io.print("7. Load inventory");
+        io.print("8. EXit");
         
         return io.readInt("Please select from the above choices.");
     } 

@@ -55,8 +55,18 @@ public class VendingMachineController {
                     addItem();
                     break;
                 case 6: 
-                    keepGoing = false;
+                    io.print("Save the inventory");
+                    saveinvent();
                     break;
+                case 7:
+                    io.print("Load the inventory");
+                    loadinvent();
+                    break;
+                case 8: 
+                    io.print("Exit");
+                    keepGoing = false;
+                    break;    
+                    
                 default:
                     io.print("UNKNOWN COMMAND, PLEASE TRY AGAIN");
             }
@@ -96,4 +106,18 @@ public class VendingMachineController {
             System.out.println("Not enough money!");
         }
     }
+    
+    public void saveinvent()
+    {   serviceLayer.savelist();
+        
+    }
+    
+    public void loadinvent()
+    {
+        serviceLayer.loadlist();
+        
+    }
+    
+    
+    
 }
