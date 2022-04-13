@@ -29,12 +29,13 @@ public class VendingMachineView {
         io.print("5. Add item");
         io.print("6. Save inventory");
         io.print("7. Load inventory");
+        io.print("8. Exit");
         
         return io.readInt("Please select from the above choices.");
     } 
     
     /**
-     * This method displays all current dvds in collection
+     * This method displays all current items in collection
      * 
      * @param dvdList list of dvds
      */
@@ -46,9 +47,9 @@ public class VendingMachineView {
     }
     
     /**
-     * Displays all information for selected DVD
+     * Displays all information for selected item
      * 
-     * @param dvd object
+     * @param item object
      */
     public void displayItem(Item item) {
         if(item != null) {
