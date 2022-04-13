@@ -129,7 +129,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
                 Item tempItem = entry.getValue();
                 myWriter.write(tempItem.getName() + "::"
                         + tempItem.getPrice() + "::"
-                        + tempItem.getQuantity());
+                        + tempItem.getQuantity()+"\n");
             }           
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
